@@ -15,5 +15,5 @@ docker build -t everest .
 -- To run the container:
 
 ```
-docker run  -it -p 8888:8888 -v C:\Users\Tanaby\Documents\INSIGHTML\everest boot camp\Class:/src everest
+docker run  -it -p 8888:8888 -v [path-to-here]:/src everest
 ```
