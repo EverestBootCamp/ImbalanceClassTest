@@ -7,3 +7,5 @@ Flask==1.1.2
 scipy
 Featuretools
 hyperopt
+nltk==3.4
+
