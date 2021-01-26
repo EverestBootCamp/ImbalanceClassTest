@@ -3,3 +3,5 @@
  scikit-learn
 matplotlib
 seaborn
+Flask==1.1.2
+scipy
