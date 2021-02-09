@@ -1,3 +1,3 @@
-This directory consists of notebooks and tests.
-Tests folder contains python scripts .there description as follows : 
-Codebase.py : This file consists of dataset .
+<strong> Unit Testing</strong>
+Testing sample data with pytest, fixtures.
+Testing the feature_enginnering , Input data, predict data with simple pipelines.
