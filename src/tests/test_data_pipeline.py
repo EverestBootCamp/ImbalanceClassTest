@@ -57,7 +57,7 @@ class Pipeline:
             C=1.0, kernel='rbf', degree=3, gamma='scale')
         self.model.fit(self.X_train, self.y_train)
         
-    def predict(self, input_data):TechnicalMentorship
+    def predict(self, input_data):
         return self.model.predict(input_data)
         
     def get_accuracy(self):
