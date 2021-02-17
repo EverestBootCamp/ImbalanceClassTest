@@ -1,3 +1,8 @@
+Task objective:
+Use TPOT method to find optimal pipiline for given dataset
+Deliverable:
+A new class which can be run using specific TPOT configs and desired parameters
+
 Instructions to run tpot
 
 1.makesure in the dataset target class lebel column name is 'Class'
