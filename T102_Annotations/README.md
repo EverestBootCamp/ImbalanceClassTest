@@ -18,3 +18,10 @@ The arguments are required to run this annotation class. Default values are prov
     
     File path where the output csv file need to be saved. Input should be in String format.
     output_file_path='C:\\Users\\udayr\\OneDrive\\Desktop'
+
+To run the data_annotation class download following files to your systtem:-
+- data_annotation.py  
+- data_annotation_test.py
+
+And through your terminal 'cd' to the file location and run the following command:-
+* python data_annotation_test
