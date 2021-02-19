@@ -24,4 +24,4 @@ To run the data_annotation class download following files to your systtem:-
 - data_annotation_test.py
 
 And through your terminal 'cd' to the file location and run the following command:-
-* python data_annotation_test
+* python data_annotation_test.py
