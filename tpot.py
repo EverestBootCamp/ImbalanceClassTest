@@ -33,9 +33,10 @@ class Tpot:
         y = self.df["Class"]
         
         #open tpot config file
-        with open(tpot_config) as file:
-            data= file.read()
-            tpot_config = ast.literal_eval(data)
+        if tpot_config != None:
+            with open(tpot_config) as file:
+                data= file.read()
+                tpot_config = ast.literal_eval(data)
   
         # apply tpot
         tpot = TPOTClassifier(
