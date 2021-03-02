@@ -29,10 +29,9 @@ class Model():
       clf = svm.SVC(**hyper_parameter, class_weight = 'balanced',\
                         random_state=0)
       clf.fit(self.scaled_X_train, self.y_train)
-      cv_mean = np.mean(cross_val_score(clf, self.scaled_X_train, self.y_train, cv=self.CV))
-      cv_std = np.std(cross_val_score(clf, self.scaled_X_train, self.y_train, cv=self.CV))
       self.y_pred = clf.predict(self.scaled_X_test)
-      return f1_score(self.y_test,self.y_pred)
+      scores= cross_val_score(clf, self.scaled_X_train, self.y_train, cv=self.CV, scoring='f1_macro')
+      return scores
 # applying model on data file
 model =Model("data_transformed.csv","data_transformed.csv")
 # applting SVM on data
