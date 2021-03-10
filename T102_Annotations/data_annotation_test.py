@@ -10,4 +10,4 @@ import data_annotation
 from data_annotation import Annotation
 
 a = Annotation()  # Calling the class and assigning it to 'a' with the dataset as the argument
-a.data_as_csv()
+a.dataframe()
