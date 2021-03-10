@@ -13,10 +13,10 @@ from sklearn.metrics import f1_score
 from sklearn import svm
 import pandas as pd
 import numpy as np
-from SvmModel import Model
+#from SvmModel import Model
 
-model = Model("data_transformed.csv",
-              "data_transformed.csv")
+#model = Model("data_transformed.csv",
+#              "data_transformed.csv")
 
 
 warnings.filterwarnings('ignore')
@@ -42,8 +42,9 @@ class controller():
     # Define the function to minimize (SVM Model)
     def optimize_hyperparam(self, n_eval=10):
 
+
         def objective(space4svm):
-            f1 = model.svm(space4svm)
+            f1 = self.model.svm(space4svm)
             print(f1)
             return {'loss': -f1, 'status': STATUS_OK}
 
@@ -87,6 +88,6 @@ class controller():
         return hyperparams
 
 
-hyperCl = controller(model)
+#hyperCl = controller(model)
 
-hyperCl.optimize_hyperparam()
+#hyperCl.optimize_hyperparam()

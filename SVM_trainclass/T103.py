@@ -9,9 +9,9 @@ from sklearn.metrics import f1_score
 class Model():
  # reading train and test data and scaling them
  # CV=k value in cross validation technique
-  def __init__(self,train_path,test_path,CV=5,label='Class'):
-    train = pd.read_csv(train_path) #reading train data
-    test = pd.read_csv(test_path) #reading test data
+  def __init__(self,train,test,CV=5,label='Class'):
+    #train = pd.read_csv(train_path) #reading train data
+    #test = pd.read_csv(test_path) #reading test data
     self.X_train= train.iloc[:,:-1]
     self.X_test= test.iloc[:,:-1]
     self.y_train = train.iloc[:,:][label] 
@@ -33,6 +33,6 @@ class Model():
       scores= cross_val_score(clf, self.scaled_X_train, self.y_train, cv=self.CV, scoring='f1_macro')
       return np. mean(scores)
 # applying model on data file
-model =Model("data_transformed.csv","data_transformed.csv")
+#model =Model("data_transformed.csv","data_transformed.csv")
 # applting SVM on data
-model.svm(hyper_parameter={'kernel':'linear','C':1.0,'gamma' : 'auto'})
+#model.svm(hyper_parameter={'kernel':'linear','C':1.0,'gamma' : 'auto'})
