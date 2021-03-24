@@ -116,11 +116,11 @@ class XGModel():
                 'min_child_weight': hp.quniform('min_child_weight',
                                                 1, 10, 1),
                 'colsample_bytree': hp.quniform('colsample_bytree',
-                                                0.1, 1, 0.05),
+                                                0.5, 1, 0.05),
                 'colsample_bylevel': hp.quniform('colsample_bylevel',
-                                                 0.1, 1, 0.05),
+                                                 0.5, 1, 0.05),
                 'colsample_bynode': hp.quniform('colsample_bynode',
-                                                0.1, 1, 0.05),
+                                                0.5, 1, 0.05),
                 'scale_pos_weight': self.ratio
 
             }
