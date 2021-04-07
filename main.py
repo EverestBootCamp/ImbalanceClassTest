@@ -2,8 +2,8 @@
 
 #importing packages
 
-#import argeparse
-#import logging
+import argparse
+import logging
 import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
@@ -20,27 +20,43 @@ from SVM_trainclass.T103 import Model
 from T102_Annotations.data_annotation import Annotation
 
 
-#Setting up log file and messages we want into the log file
-#logging.basicConfig(filename='Log_File.log', encoding='utf-8', level=logging.DEBUG)
+
+def arguments():
+    '''get input arguments'''
+    parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
 
-#Setting up arguments for the file and writing help for the main file 
-#parser = argparse.ArgumentParser()
-#parser.add_argument("classification_model", help="specify the algorithm for classification",
- #                   type=string)
+    parser.add_argument("--algorithm", default="svm", help="algorithm for modelling", type=str, choices=['svm'])
+    parser.add_argument("--percentage", default=0.1, help="percentage of data used for training", type=float)
+
+
+
+    return parser.parse_args()
+
 
 def main():
-    train_df_Class = Annotation(test_size=0.1,output_dataframe='0.1')
-    train_df = train_df_Class.dataframe()
-    test_df_Class = Annotation(test_size=0.1,output_dataframe='test')
-    test_df = test_df_Class.dataframe()
-    svm_model = Model(train=train_df,test=test_df)
-    hyperOpt_class = controller(svm_model)
-    hyperOpt_class.optimize_hyperparam()
+
+    if(args.algorithm == 'svm'):
+
+        logging.basicConfig(filename='logfile.log', filemode="w", format ='%(asctime)s %(message)s' ,level=logging.INFO)
+        percentage = args.percentage
+
+        logging.info('*******Creating test and train data sets*******')
+        train_df_Class = Annotation(test_size=percentage,output_dataframe=str(percentage))
+        train_df = train_df_Class.dataframe()
+        test_df_Class = Annotation(test_size=percentage,output_dataframe='test')
+        test_df = test_df_Class.dataframe()
+        logging.info('*******Creating the SVM model*******')
+        svm_model = Model(train=train_df,test=test_df)
+        logging.info('*******Optimizing the Hyper Parameters*******')
+        hyperOpt_class = controller(svm_model)
+        hyperOpt_class.optimize_hyperparam()
     
 
 
 
 if __name__ == '__main__':
+    args=arguments()
     main()
+    
 
