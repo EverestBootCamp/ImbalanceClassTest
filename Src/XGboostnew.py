@@ -27,8 +27,8 @@ class XGBModel():
 
     def __init__(
             self,
-            train_path,
-            test_path,
+            train,
+            test,
             num_boost_round=50,
             early_stopping_rounds=10,
             CV=5,
@@ -36,13 +36,14 @@ class XGBModel():
         """
         This method takes the input parameters, performs scaling
         """
-        train = pd.read_csv(train_path)  # reading train data
-        test = pd.read_csv(test_path)  # reading test data
+        #train = pd.read_csv(train_path)  # reading train data
+        #test = pd.read_csv(test_path)  # reading test data
         # remove :1000 during production
-        self.X_train = train.iloc[:1000, :-1]
-        self.X_test = test.iloc[:1000, :-1]
-        self.y_train = train.iloc[:1000, :][label]
-        self.y_test = test.iloc[:1000, :][label]
+        
+        self.X_train = train.iloc[:, :-1]
+        self.X_test = test.iloc[:, :-1]
+        self.y_train = train.iloc[:, :][label]
+        self.y_test = test.iloc[:, :][label]
         sc = StandardScaler()  # scaling data
         self.scaled_X_train = sc.fit_transform(self.X_train)
         self.scaled_X_test = sc.transform(self.X_test)
