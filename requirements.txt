@@ -1,0 +1,16 @@
+ numpy==1.19.0
+ pandas== 1.2.0
+ scikit-learn
+scipy>=0.14.1
+dask
+distributed>=2.2.0
+joblib
+pyyaml
+liac-arff
+ConfigSpace>=0.4.14,<0.5
+pynisher>=0.6.3
+pyrfr>=0.8.1,<0.9
+smac>=0.13.1,<0.14
+matplotlib
+seaborn
+tpot
