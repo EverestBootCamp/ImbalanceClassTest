@@ -21,35 +21,6 @@ from Hyperoptsvm import controller
 from SvmModel import Model
 
 
-model = Model("data_transformed.csv",
-              "data_transformed.csv")
-
-
-hyperCl = controller(model)
-hyperparams = hyperCl.optimize_hyperparam()
-
-
-# print(hyperparams)
-
-# import data
-data_transformed = pd.read_csv('data_transformed.csv')
-
-# avoid this ugly slicing by using a two-dim dataset
-X = data_transformed.iloc[:5000, :-1]
-y = data_transformed.iloc[:5000, :]['Class']
-
-
-# using 75% of the data for training and 30% for testing (with
-# stratification for imbalanced class)
-X_train, X_test, y_train, y_test = train_test_split(
-    X, y, test_size=0.30, stratify=y, random_state=123)
-
-# Standardize features by removing the mean and scaling to unit variance
-sc = StandardScaler()
-scaled_X_train = sc.fit_transform(X_train)
-scaled_X_test = sc.transform(X_test)
-
-
 class Test:
     """
     A class to represent trains the model on best paramters and
