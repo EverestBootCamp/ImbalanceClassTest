@@ -5,6 +5,7 @@
 This script prompts a user to test SVM model.
 """
 
+import pickle
 import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.metrics import plot_precision_recall_curve
@@ -54,9 +55,10 @@ class Test:
         svc_disp.ax_.set_title('ROC curve')
         plt.show()
         plt.savefig('roc.png')
+        pickle.dump(svc_disp, open('FigureObject.pickle', 'wb'))
 
     def prcurve(self):
-        #Precision Recall Curve
+        # Precision Recall Curve
         clf = self.clf
         y_score = clf.decision_function(scaled_X_test)
         average_precision = average_precision_score(y_test, y_score)
@@ -67,3 +69,4 @@ class Test:
                            'AP={0:0.2f}'.format(average_precision))
         plt.show()
         plt.savefig('prcurve.png')
+        pickle.dump(disp, open('FigureObject.pickle', 'wb'))
