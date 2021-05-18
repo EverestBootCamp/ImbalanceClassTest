@@ -21,7 +21,13 @@ from SVM_trainclass.T103 import Model
 from T102_Annotations.data_annotation import Annotation
 from sklearn.metrics import log_loss
 import xgboost as xgb
-
+from LGBM.T111_modified import LGBM
+import optuna
+#import optuna.integration.lightgbm as lgb
+import math
+from optuna.trial import Trial
+from Random_Forest.Random_Forest import RFModel
+from sklearn.ensemble import RandomForestClassifier
 
 
 def arguments():
@@ -29,7 +35,7 @@ def arguments():
     parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
 
-    parser.add_argument("--algorithm", default="xgb", help="algorithm for modelling", type=str, choices=['svm','xgb'])
+    parser.add_argument("--algorithm", default="xgb", help="algorithm for modelling", type=str, choices=['svm','xgb','lgbm','random_forest'])
     parser.add_argument("--percentage", default=0.1, help="percentage of data used for training", type=float)
 
 
@@ -63,6 +69,31 @@ def main():
         logging.info('*******Optimizing the Hyper Parameters*******')
         xgb_model.optimize_hyperparam()
         logging.info('*******HyperOptimization Finished*******')
+    
+    elif (args.algorithm == 'lgbm'):
+        logging.info('*******Initializing the LGBM model*******')
+        X_train = train_df.iloc[:, :-1]
+        X_test = test_df.iloc[:, :-1]
+        y_train = train_df.iloc[:, :]['Class']
+        y_test = test_df.iloc[:, :]['Class']
+        sc = StandardScaler()
+        scaled_X_train = sc.fit_transform(X_train)
+        scaled_X_test = sc.transform(X_test)
+        lgbm_class = LGBM (scaled_X_train,scaled_X_test,y_train,y_test)
+        logging.info('*******Optimizing the Hyper Parameters*******')
+        lgbm_class.optuna_method()
+        logging.info('*******HyperOptimization Finished*******')
+
+    elif (args.algorithm == 'random_forest'):
+        logging.info('*******Initializing the Random Forest model*******')
+        rf_model = RFModel(train_df,test_df)
+        logging.info('*******Optimizing the Hyper Parameters*******')
+        rf_model.optimize_hyperparam()
+        logging.info('*******HyperOptimization Finished*******')
+
+
+
+
 
 
 
