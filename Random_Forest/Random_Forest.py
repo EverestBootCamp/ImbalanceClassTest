@@ -100,7 +100,7 @@ class RFModel():
             This method defines objective function to be tuned by the HyperOpt
 
             """
-            f1 = rf_model.randomforest(space4rf)
+            f1 = self.randomforest(space4rf)
             print(f1)
             return {'loss': -f1, 'status': STATUS_OK}
 
